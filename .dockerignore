@@ -1,0 +1,7 @@
+*.db
+*.md
+*.http
+.vscode
+.git
+.cache
+.github
