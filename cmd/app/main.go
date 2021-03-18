@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/DBoyara/find-course/repository"
-	"github.com/DBoyara/find-course/router"
+	"github.com/DBoyara/find-course/pkg/repository"
+	"github.com/DBoyara/find-course/pkg/router"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -26,10 +26,6 @@ func main() {
 	app.Use(cors.New())
 
 	router.SetupRoutes(app)
-
-	app.Get("/hello", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
 
 	// 404 Handler
 	app.Use(func(c *fiber.Ctx) error {

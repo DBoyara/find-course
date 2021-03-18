@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/DBoyara/find-course/pkg/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -35,4 +36,7 @@ func ConnectToDB() {
 
 	}
 	log.Println("connected")
+
+	log.Print("Running the migrations...")
+	DB.AutoMigrate(&models.User{}, &models.Claims{})
 }
