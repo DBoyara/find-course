@@ -34,7 +34,7 @@ jobs:
       # добавили всё, что ниже
 
       - name: Build binary for docker image
-        run: go build -o find-course ./cmd/app
+        run: go build -v -o find-course ./cmd/app
         env:
           CGO_ENABLED: 0
 
