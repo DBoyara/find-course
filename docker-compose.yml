@@ -1,7 +1,7 @@
 version: '3.1'
 
 services:
-  invest-bag-db:
+  find-course-db:
     image: postgres
     ports:
       - 5432:5432
@@ -12,11 +12,11 @@ services:
     # volumes:
     #   - ./initdb:/docker-entrypoint-initdb.d
 
-  # backend:
-  #   build: .
-  #   ports:
-  #     - 8080:8080
-  #   environment:
-  #     DB_HOST: invest-bag-db
-  #   depends_on:
-  #     - invest-bag-db
+  backend:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      DB_HOST: find-course-db
+    depends_on:
+      - find-course-db
