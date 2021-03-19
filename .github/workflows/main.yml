@@ -49,3 +49,4 @@ jobs:
           registry: docker.pkg.github.com
           repository: dboyara/find-course/find-course
           tag_with_ref: true
+          push: true
