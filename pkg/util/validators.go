@@ -9,7 +9,7 @@ import (
 )
 
 // IsEmpty checks if a string is empty
-func IsEmpty(str string) (bool, string) {
+func isEmpty(str string) (bool, string) {
 	if valid.HasWhitespaceOnly(str) && str != "" {
 		return true, "Must not be empty"
 	}
@@ -20,7 +20,7 @@ func IsEmpty(str string) (bool, string) {
 // ValidateRegister func validates the body of user for registration
 func ValidateRegister(u *models.User) *models.UserErrors {
 	e := &models.UserErrors{}
-	e.Err, e.Username = IsEmpty(u.Username)
+	e.Err, e.Username = isEmpty(u.Username)
 
 	if !valid.IsEmail(u.Email) {
 		e.Err, e.Email = true, "Must be a valid email"
