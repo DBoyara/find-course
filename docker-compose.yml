@@ -1,8 +1,18 @@
 version: '3.1'
 
 services:
-  find-course-db:
-    image: postgres
+
+  backend:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      PSQL_HOST: db
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12-alpine
     ports:
       - 5432:5432
     environment:
@@ -11,12 +21,3 @@ services:
       - POSTGRES_DB=db
     # volumes:
     #   - ./initdb:/docker-entrypoint-initdb.d
-
-  backend:
-    build: .
-    ports:
-      - 3000:3000
-    environment:
-      DB_HOST: find-course-db
-    depends_on:
-      - find-course-db
