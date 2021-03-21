@@ -38,5 +38,5 @@ func ConnectToDB() {
 	log.Println("connected")
 
 	log.Print("Running the migrations...")
-	DB.AutoMigrate(&models.User{}, &models.Claims{})
+	DB.AutoMigrate(&models.User{}, &models.Claims{})  //nolint
 }
