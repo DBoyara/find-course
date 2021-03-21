@@ -1,6 +1,6 @@
 PROGRAM_NAME = find-course
 
-.PHONY: help clean dep lint test build build-docker
+.PHONY: help clean dep test build build-docker
 
 .DEFAULT_GOAL := help
 
@@ -14,9 +14,6 @@ clean: ## Clean build directory.
 
 dep: ## Download the dependencies.
 	go get -v -t -d ./...
-
-lint: dep ## Lint the source files
-	golangci/golangci-lint-action@v2
 
 test: dep ## Run tests
 	go test -v ./...
