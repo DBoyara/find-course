@@ -31,8 +31,5 @@ jobs:
       - name: Get dependencies
         run: make dep
 
-      # - name: Run build
-      #   run: make build
-
       - name: Run test
         run: make test
