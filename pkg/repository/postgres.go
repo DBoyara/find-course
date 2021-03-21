@@ -33,10 +33,14 @@ func ConnectToDB() {
 	if err != nil {
 		log.Fatal("Failed to connect to database. \n", err)
 		os.Exit(2)
-
 	}
 	log.Println("connected")
 
 	log.Print("Running the migrations...")
-	DB.AutoMigrate(&models.User{}, &models.Claims{})  //nolint
+	err = DB.AutoMigrate(&models.User{}, &models.Claims{})
+	if err != nil {
+		log.Fatal("Failed to auto-migrate. \n", err)
+		os.Exit(2)
+	}
+
 }
