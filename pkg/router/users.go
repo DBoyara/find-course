@@ -38,7 +38,7 @@ func SetupUserRoutes() {
 // CreateUser route registers a User into the database
 func CreateUser(c *fiber.Ctx) error {
 	u := new(models.User)
-
+	log.Println(u)
 	if err := c.BodyParser(u); err != nil {
 		return c.JSON(fiber.Map{
 			"error": true,
@@ -51,8 +51,10 @@ func CreateUser(c *fiber.Ctx) error {
 	if errors.Err {
 		return c.JSON(errors)
 	}
-
-	if count := db.DB.Where(&models.User{Email: u.Email}).First(new(models.User)).RowsAffected; count > 0 {
+	log.Println(u)
+	log.Println()
+	log.Println(new(models.User))
+	if count := db.DB.Where(&models.User{Email: u.Email}).First(&u).RowsAffected; count > 0 {
 		errors.Err, errors.Email = true, "Email is already registered"
 	}
 	if count := db.DB.Where(&models.User{Username: u.Username}).First(new(models.User)).RowsAffected; count > 0 {
