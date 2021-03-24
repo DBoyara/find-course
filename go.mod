@@ -10,5 +10,5 @@ require (
 	github.com/smartystreets/goconvey v1.6.4
 	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83
 	gorm.io/driver/postgres v1.0.8
-	gorm.io/gorm v1.21.3
+	gorm.io/gorm v1.21.4
 )

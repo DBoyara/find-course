@@ -14,7 +14,7 @@ import (
 var DB *gorm.DB
 
 // ConnectToDB connects the server with database
-func ConnectToDB(host string, user string, pass string, db string) error {
+func ConnectToDB(host string, user string, pass string, db string)  {
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s sslmode=disable TimeZone=Asia/Kolkata", host, user, pass, db,
 	)
@@ -26,7 +26,7 @@ func ConnectToDB(host string, user string, pass string, db string) error {
 
 	if err != nil {
 		log.Fatal("Failed to connect to database. \n", err)
-		return err
+		// return err
 	}
 	log.Println("connected")
 
@@ -34,8 +34,8 @@ func ConnectToDB(host string, user string, pass string, db string) error {
 	err = DB.AutoMigrate(&models.User{}, &models.Claims{})
 	if err != nil {
 		log.Fatal("Failed to auto-migrate. \n", err)
-		return err
+		// return err
 	}
-
-	return nil
+	log.Print("Migrations are done")
+	// return nil
 }

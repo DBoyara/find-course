@@ -67,11 +67,11 @@ func main() {
 
 func execute(appAddress string, host string, dbUser string, dbPass string, db string) (err error) {
 	// Connect to Postgres
-	err = repository.ConnectToDB(host, dbUser, dbPass, db)
-	if err != nil {
-		log.Fatal("Fail with database. \n", err)
-		return err
-	}
+	repository.ConnectToDB(host, dbUser, dbPass, db)
+	// if err != nil {
+	// 	log.Fatal("Fail with database. \n", err)
+	// 	return err
+	// }
 
 	app := CreateServer()
 
