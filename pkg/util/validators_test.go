@@ -1,10 +1,10 @@
 package util
 
 import (
-	"log"
 	"testing"
 
 	"github.com/DBoyara/find-course/pkg/models"
+
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -20,7 +20,6 @@ func Test_isEmpty(t *testing.T) {
 			})
 		})
 		Convey("When username is empty", func() {
-			log.Println(userNameEmpty)
 			isStringEmty, errString := isEmpty(userNameEmpty)
 			Convey("isStringEmty shuld be True", func() {
 				So(isStringEmty, ShouldBeTrue)
