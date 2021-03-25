@@ -49,7 +49,7 @@ func TestGenerateRefreshClaims(t *testing.T) {
 }
 
 func TestGetAuthCookies(t *testing.T) {
-	Convey("Set app", t, func() {
+	SkipConvey("Set app", t, func() {
 
 	})
 }
