@@ -23,7 +23,11 @@ func main() {
 
 	app := CreateServer()
 
-	app.Use(cors.New())
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     "*",
+		AllowMethods:     "GET,POST,PUT,DELETE",
+		AllowHeaders:     "*",
+	}))
 
 	router.SetupRoutes(app)
 
