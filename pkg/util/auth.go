@@ -144,4 +144,3 @@ func getPrivKey() string {
 		return "jK21*!mas1@"
 	}
 	return key
-}
