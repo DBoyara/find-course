@@ -33,7 +33,7 @@ func GenerateAccessClaims(uuid string) (*models.Claims, string) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
-	tokenString, err := token.SignedString([]byte(os.Getenv("PRIV_KEY")))
+	tokenString, err := token.SignedString([]byte(getPrivKey()))
 	if err != nil {
 		panic(err)
 	}
@@ -71,7 +71,7 @@ func GenerateRefreshClaims(cl *models.Claims) string {
 	db.DB.Create(&refreshClaim)
 
 	refreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshClaim)
-	refreshTokenString, err := refreshToken.SignedString([]byte(os.Getenv("PRIV_KEY")))
+	refreshTokenString, err := refreshToken.SignedString([]byte(getPrivKey()))
 	if err != nil {
 		panic(err)
 	}
@@ -87,7 +87,7 @@ func SecureAuth() func(*fiber.Ctx) error {
 		claims := new(models.Claims)
 		token, err := jwt.ParseWithClaims(accessToken, claims,
 			func(token *jwt.Token) (interface{}, error) {
-				return []byte(os.Getenv("PRIV_KEY")), nil
+				return []byte(getPrivKey()), nil
 			})
 
 		if token.Valid {
@@ -136,4 +136,12 @@ func GetAuthCookies(accessToken, refreshToken string) (*fiber.Cookie, *fiber.Coo
 	}
 
 	return accessCookie, refreshCookie
+}
+
+func getPrivKey() string {
+	key, ok := os.LookupEnv("PRIV_KEY")
+	if !ok {
+		return "jK21*!mas1@"
+	}
+	return key
 }

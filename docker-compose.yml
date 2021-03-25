@@ -1,8 +1,8 @@
 version: '3.1'
 
 services:
-  find-course-db:
-    image: postgres
+  db:
+    image: postgres:12-alpine
     ports:
       - 5432:5432
     environment:
@@ -17,6 +17,6 @@ services:
     ports:
       - 3000:3000
     environment:
-      DB_HOST: find-course-db
+      DB_HOST: db
     depends_on:
-      - find-course-db
+      - db
