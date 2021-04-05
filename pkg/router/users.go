@@ -143,14 +143,12 @@ func GetUserData(c *fiber.Ctx) error {
 // GetAccessToken generates and sends a new access token iff there is a valid refresh token
 func GetAccessToken(c *fiber.Ctx) error {
 	refreshToken := c.Get("refresh_token")
-	log.Println(refreshToken)
-	log.Println([]byte(os.Getenv("PRIV_KEY")))
 	refreshClaims := new(models.Claims)
 	token, _ := jwt.ParseWithClaims(refreshToken, refreshClaims,
 		func(token *jwt.Token) (interface{}, error) {
 			return []byte(os.Getenv("PRIV_KEY")), nil
 		})
-	log.Println(token)
+
 	if res := db.DB.Where(
 		"expires_at = ? AND issued_at = ? AND issuer = ?",
 		refreshClaims.ExpiresAt, refreshClaims.IssuedAt, refreshClaims.Issuer,

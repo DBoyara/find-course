@@ -28,7 +28,6 @@ func ConnectToDB() {
 	)
 
 	currentLogLevel := getLogLevel(os.Getenv("DB_LOGLEVEL"))
-	log.Print(currentLogLevel)
 	log.Print("Connecting to PostgreSQL DB...")
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(currentLogLevel),
