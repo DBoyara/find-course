@@ -5,9 +5,10 @@ import "github.com/dgrijalva/jwt-go"
 // User represents a User schema
 type User struct {
 	Base
-	Email    string `json:"email" gorm:"unique"`
-	Username string `json:"username" gorm:"unique"`
-	Password string `json:"password"`
+	Email       string        `json:"email" gorm:"unique"`
+	Username    string        `json:"username" gorm:"unique"`
+	Password    string        `json:"password"`
+	Calculation []Calculation `gorm:"foreignKey:user_id;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
 
 // UserErrors represent the error format for user routes

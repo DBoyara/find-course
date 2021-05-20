@@ -28,7 +28,7 @@ func ConnectToDB() {
 	)
 
 	currentLogLevel := getLogLevel(os.Getenv("DB_LOGLEVEL"))
-	log.Print("Connecting to PostgreSQL DB...")
+	log.Println("Connecting to PostgreSQL DB...")
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(currentLogLevel),
 	})
@@ -37,10 +37,10 @@ func ConnectToDB() {
 		log.Fatal("Failed to connect to database. \n", err)
 		os.Exit(2)
 	}
-	log.Println("connected")
+	log.Println("Connected to Postgres")
 
-	log.Print("Running the migrations...")
-	err = DB.AutoMigrate(&models.User{}, &models.Claims{})
+	log.Println("Running the migrations...")
+	err = DB.AutoMigrate(&models.User{}, &models.Claims{}, &models.Calculation{})
 	if err != nil {
 		log.Fatal("Failed to auto-migrate. \n", err)
 		os.Exit(2)

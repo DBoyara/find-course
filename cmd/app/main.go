@@ -38,6 +38,7 @@ func CreateServer() *fiber.App {
 func main() {
 	// Connect to Postgres
 	repository.ConnectToDB()
+	repository.ConnectToMongoDB()
 
 	app := CreateServer()
 

@@ -9,6 +9,9 @@ require (
 	github.com/google/uuid v1.2.0
 	github.com/joho/godotenv v1.3.0
 	github.com/smartystreets/goconvey v1.6.4
+	github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c // indirect
+	github.com/xdg/stringprep v0.0.0-20180714160509-73f8eece6fdc // indirect
+	go.mongodb.org/mongo-driver v1.5.2 // indirect
 	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83
 	gorm.io/driver/postgres v1.0.8
 	gorm.io/gorm v1.21.4
