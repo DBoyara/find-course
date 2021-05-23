@@ -13,27 +13,27 @@ type Calculation struct {
 }
 
 type PercentageRate struct {
-	Rate     float64   `json:"rate" bson:"double"`         // Процентная ставка
-	DataFrom time.Time `json:"data_from" bson:"timestamp"` // Дата, с которой действует ставка
+	Rate     float64   `json:"rate" bson:"rate"`           // Процентная ставка
+	DataFrom time.Time `json:"data_from" bson:"data_from"` // Дата, с которой действует ставка
 }
 
 type EarlyRepayment struct {
-	Type          string    `json:"type" bson:"string"`          // Тип: разовый, раз в месяц, раз в квартал...
-	DataFrom      time.Time `json:"data_from" bson:"timestamp"`  // Дата платежа
-	Amount        uint      `json:"new_amount" bson:"int64"`     // Сумма платежа(ей)
-	Recalculation string    `json:"recalculation" bson:"string"` // уменьшить платеж-срок
+	Type          string    `json:"type" bson:"type"`                   // Тип: разовый, раз в месяц, раз в квартал...
+	DataFrom      time.Time `json:"data_from" bson:"data_from"`         // Дата платежа
+	Amount        uint      `json:"new_amount" bson:"new_amount"`       // Сумма платежа(ей)
+	Recalculation string    `json:"recalculation" bson:"recalculation"` // уменьшить платеж-срок
 }
 
 type UserCalculation struct {
-	ID                 primitive.ObjectID `json:"id" bson:"_id,omitempty"`
-	ClientName         string             `json:"client_name" bson:"string"`
-	CreditAmount       uint               `json:"amount" bson:"int64"`                // Сумма кредита
-	CreditTerm         uint16             `json:"term" bson:"int64"`                  // Срок кредита
-	CreditTermType     string             `json:"term_type" bson:"string"`            // год-месяц
-	PaymentType        string             `json:"payment_type" bson:"string"`         // Вид платежа: аннуитетный, дифферинцированный
-	CostRealEstate     uint               `json:"cost" bson:"int64"`                  // Стоимость недвижимости
-	InitialPayment     uint               `json:"iniatal_payment" bson:"int64"`       // Первоначальный платеж
-	InitialPaymentType string             `json:"iniatal_payment_type" bson:"string"` // руб-%
-	PercentageRates    PercentageRate     `json:"percentage_rate" gorm:"embedded"`    // Процентная ставка
-	EarlyRepayments    EarlyRepayment     `json:"early_repayment" gorm:"embedded"`    // Досрочные погашения
+	ID                 primitive.ObjectID `json:"id,omitempty" bson:"_id,omitempty"`
+	ClientName         string             `json:"client_name" bson:"client_name"`
+	CreditAmount       uint               `json:"amount" bson:"amount"`                                                // Сумма кредита
+	CreditTerm         uint16             `json:"term" bson:"term"`                                                    // Срок кредита
+	CreditTermType     string             `json:"term_type" bson:"term_type"`                                          // год-месяц
+	PaymentType        string             `json:"payment_type" bson:"payment_type"`                                    // Вид платежа: аннуитетный, дифферинцированный
+	CostRealEstate     uint               `json:"cost" bson:"cost"`                                                    // Стоимость недвижимости
+	InitialPayment     uint               `json:"iniatal_payment" bson:"iniatal_payment"`                              // Первоначальный платеж
+	InitialPaymentType string             `json:"iniatal_payment_type" bson:"iniatal_payment_type"`                    // руб-%
+	PercentageRates    PercentageRate     `json:"percentage_rate,omitempty" bson:"percentage_rate,embedded,omitempty"` // Процентная ставка
+	EarlyRepayments    EarlyRepayment     `json:"early_repayment,omitempty" bson:"early_repayment,embedded,omitempty"` // Досрочные погашения
 }

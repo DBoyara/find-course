@@ -11,6 +11,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// MongoInstance contains the Mongo client and database objects
+type MongoInstance struct {
+	Client *mongo.Client
+	Db     *mongo.Database
+}
+
+var MG MongoInstance
+
 // ConnectToDB connects the server with database
 func ConnectToMongoDB() {
 	ctx := context.Background()
@@ -23,12 +31,23 @@ func ConnectToMongoDB() {
 		os.Getenv("MONGO_USER"), os.Getenv("MONGO_PASS"), os.Getenv("MONGO_PORT"), os.Getenv("MONGO_DB"),
 	)
 
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(dsn))
+	log.Println("Connecting to MongoDB...")
+	client, err := mongo.NewClient(options.Client().ApplyURI(dsn))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	log.Println("Connecting to MongoDB...")
+	err = client.Connect(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	database := client.Database(os.Getenv("MONGO_DB"))
 	log.Printf("Connected to MongoDB %s", database.Name())
+
+	MG = MongoInstance{
+		Client: client,
+		Db:     database,
+	}
+
 }

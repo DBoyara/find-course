@@ -10,4 +10,7 @@ func SetupRoutes(app *fiber.App) {
 
 	USER = api.Group("/user")
 	SetupUserRoutes()
+
+	CALC = api.Group("/calculators")
+	SetupCalcRoutes()
 }
