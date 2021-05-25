@@ -20,8 +20,8 @@ services:
       - MONGO_INITDB_DATABASE=db
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=new_pass
-    # volumes:
-    #   - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    volumes:
+      - ./initmongodb:/docker-entrypoint-initdb.d
 
   mongo-express:
     image: mongo-express:latest
