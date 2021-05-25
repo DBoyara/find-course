@@ -41,7 +41,10 @@ func CreateCalculator(c *fiber.Ctx) error {
 	createdRecord := collection.FindOne(c.Context(), filter)
 
 	createdCalc := &models.UserCalculation{}
-	createdRecord.Decode(createdCalc)
+	err = createdRecord.Decode(createdCalc)
+	if err != nil {
+		return c.Status(500).SendString(err.Error())
+	}
 
 	return c.Status(201).JSON(createdCalc)
 }
