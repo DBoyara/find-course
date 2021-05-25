@@ -1,7 +1,13 @@
 package router
 
 import (
+	"errors"
+
 	"github.com/gofiber/fiber/v2"
+)
+
+var (
+	ErrCalcDoesNotExist = errors.New("calc does not exist")
 )
 
 // SetupRoutes setups all the Routes
